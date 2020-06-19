@@ -46,9 +46,6 @@ def setGlobalVars(event):
     globalVars['InstanceTagNoReboot'] = "AutoDigiNoReboot"
 
     try:
-        globalVars['Owner'] = event.get('Owner', "Miztiik")
-        globalVars['Environment'] = event.get('Environment', "Test")
-        globalVars['REGION_NAME'] = event.get('REGION_NAME', "eu-central-1")
         globalVars['tagName'] = event.get('tagName', "Serverless-AMI-Baker-Bot")
         globalVars['findNeedle'] = event.get('findNeedle', "AMIBackUp")
         globalVars['ReplicateAMI'] = event.get('ReplicateAMI', "No")
@@ -65,7 +62,6 @@ This function creates an AMI of *all* EC2 instances having a tag "AMIBackUp=Yes"
 """
 def amiBakerBot():
 
-    # ec2_client = boto3.client('ec2',region_name=globalVars['REGION_NAME'])
     ec2_client = boto3.client('ec2')
 
     imagesBaked = { 'Images':[], 'FailedAMIs':[], 'Status':{} }
